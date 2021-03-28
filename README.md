@@ -1,3 +1,88 @@
+
+
+
+[![Twitter Badge](https://img.shields.io/badge/chat-twitter-blue.svg)](https://twitter.com/ArrayLikeObj)
+
+# Hacktober Fest 2020 Contribution #3
+
+<p align="center">
+  <img src="https://i.gyazo.com/e9bb5a694b5d0b47eab8117d94c653d9.png" alt="Demo gif">
+</p>
+
+## Concepts/ Tech
+- OSS / Team Git collaboration
+- C string manipulation
+- Memory allocation
+- nth Largest Palidrome Problem
+
+
+## Contriubtions
+
+
+<p align="center">
+  <img src="https://i.gyazo.com/0d9e5678aa8aab30ce091478efa058da.png" alt="Demo gif">
+</p>
+
+[Link to the closed issue](https://github.com/yafiwebdev/ProjectEuler100/pull/124)
+
+
+### Determining if a string is a Palindrome (C)
+```
+bool isPalindrome(int num){
+    //Fits any int 
+    char str[12];
+    sprintf(str, "%d", num);
+    int startIdx = 0; 
+    int endIdx = strlen(str) - 1;
+    bool retVal = true;
+    while(endIdx > startIdx){
+        char left = str[startIdx];
+        char right = str[endIdx];
+        endIdx--;
+        startIdx++;
+        //Not a palindrome
+        if(left != right){
+            retVal = false;
+            break;
+        }
+    }
+    return retVal;
+}
+
+```
+
+### Largest palindrome made from the product of two n-digit numbers
+Calculates the largest palindrome made from the product of two n-digit numbers.
+ *   n: To how many digits do you want to calculate the palindrome. 
+ *   (e.g  n = 2 max is 99 min is 10, n = 3 max is 999 min is 100)
+
+```
+int getLargestNthDigitPalindromeProduct(int n){
+    // Use n to calculate the nth digit max num and min num
+    char* max = (char*)malloc((n+1) * sizeof(char));
+    int largestFound = -1;
+    int minNum = pow(10,n - 1);
+    while(n){
+        strcat(max, "9");
+        n--;
+    }
+    const maxNum = atoi(max);
+    for (int i = maxNum; i >= minNum; i--){
+        for (int j = maxNum; j >= minNum; j--){
+            int prod = i * j;
+            if( largestFound < prod && isPalindrome(prod)){
+                largestFound = prod;
+            }
+        }
+    }
+    printf("Largest found palindrome number [%d] for %d digit numbers \n.", largestFound, n);
+    return largestFound;
+}
+```
+--------------------------------------------------------------------------------
+
+
+
 # Project Euler Problems' Solutions
 Introduced by [FreeCodeCamp](https://www.freecodecamp.org/), "ProjectEuler100" is a challenge for solving at least the first 100 algorithm problems on [Project Euler](http://projecteuler.net/)
 
